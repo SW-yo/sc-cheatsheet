@@ -14,6 +14,7 @@
 - IdPの認証が突破されると連携する全サービスに被害が及ぶため、IdPには多要素認証を必須とする。
 - 使用した認証方式は、SAMLのAuthnContext、OIDCのacr・amrでSP／RPへ伝えられる。
 - Kerberosは例外で、パスワード由来の鍵による認証をプロトコル自体に含む。
+- LDAPは利用者情報（ID、パスワード、所属、グループ等）を格納するディレクトリへのアクセス手順で、IdP、KDC、認証サーバが背後で参照するID格納先として使われる（Active Directoryは認証にKerberos、参照にLDAPを用いる）。
 
 ##### 認証の3要素と多要素認証
 - 知識（パスワード、PIN）、所持（スマートフォン、ICカード）、生体（指紋、顔）の3要素がある。
@@ -188,6 +189,7 @@
   - Kerberos：TGT、ST、AS、TGS、krbtgt、SPN、PKINIT（RFC 4556）。
   - Cookie：属性名（Domain、Secure、HttpOnly、SameSite）。
   - 認証方式：TOTP（RFC 6238）、HOTP（RFC 4226）、WebAuthn（W3C）、CTAP（FIDO Alliance）、CRL（RFC 5280）、OCSP（RFC 6960）。
+  - LDAP：simple bind、SASL bind、StartTLS（RFC 4511、RFC 4513）。
 - 製品・設定依存：リバースプロキシで使うヘッダー名、エージェント方式のCookie名、Kerberosの時刻差許容値（5分は既定値で変更可）。
 - 説明用に任意に作った部分：a.example.com、b.example.net、example.com（例示用ドメイン）。
 - 標準規格ではない分類・呼び方
@@ -195,3 +197,4 @@
   - 「リバースプロキシ方式」「エージェント方式」は実装方式の慣用的な呼び方。
   - 「認証の3要素」はNIST SP 800-63等でも用いられる一般的な分類。
   - 「リスクベース認証」「パスワードスプレー攻撃」「パスワードリスト攻撃」は慣用的な呼び方。
+  - 「LDAPS」（TLS上のLDAPの通称、ポート636）、「統合認証」は慣用的な呼び方。
