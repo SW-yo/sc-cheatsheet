@@ -103,7 +103,7 @@ Set-Cookie: SID=def456; Secure; HttpOnly; SameSite=Lax
 | 'none'                                                      | すべて禁止                                     |
 | <mark style="background: #FFB8EBA6;">'unsafe-inline'</mark> | インラインのスクリプトを許可（XSS対策が大きく弱まる）              |
 | 'unsafe-eval'                                               | eval() などで文字列をコードとして実行するのを許可              |
-| 'nonce-ランダム値'                                               | 同じnonce属性をもつscript要素だけ実行を許可。値はレスポンスごとに変える |
+| <mark style="background: #FFB8EBA6;">'nonce-ランダム値'</mark>   | 同じnonce属性をもつscript要素だけ実行を許可。値はレスポンスごとに変える |
 | 'sha256-ハッシュ値'                                              | 中身のハッシュが一致するインラインスクリプトだけ許可                |
 
 - 注意：<mark style="background: #FFB8EBA6;">script-src 'self' のとき、攻撃者が自サイト内にファイルをアップロードできると、そのファイルは「自オリジン」なので読み込まれる</mark>（R7秋問1の論点）。<mark style="background: #FFB8EBA6;">nosniff とアップロードファイルのContent-Typeの固定が併せて必要になる。</mark>
